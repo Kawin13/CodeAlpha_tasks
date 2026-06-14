@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: nexusai-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.app:app --workers 1 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: CONFIDENCE_THRESHOLD
+        value: "40"
+      - key: DEBUG
+        value: "false"
+<<<<<<< HEAD
+      - key: CORS_ORIGINS
+        value: "https://kawin13.github.io,http://localhost:5000,http://localhost:3000"
+      # Set in Render dashboard — do NOT commit real keys here:
+=======
+      # Optional AI fallback keys — set in Render dashboard, never commit:
+>>>>>>> 620a652603ef6c712cc5299273727a2810800897
+      # - key: GEMINI_API_KEY
+      #   sync: false
+      # - key: OPENAI_API_KEY
+      #   sync: false
